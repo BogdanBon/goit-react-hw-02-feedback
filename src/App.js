@@ -1,7 +1,13 @@
-import ReviewCounter from './reviewCounter/reviewCounter';
+import ReviewCounter from './components/reviewCounter/ReviewCounter';
 
 function App() {
-  return <ReviewCounter />;
+  return (
+    <ReviewCounter
+      initialValueGood={0}
+      initialValueNeutral={0}
+      initialValueBad={0}
+    />
+  );
 }
 
 export default App;
