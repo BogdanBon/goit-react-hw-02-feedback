@@ -25,17 +25,24 @@ class ReviewCounter extends React.Component {
     bad: this.props.initialValueBad,
   };
 
-  handleIncrement = event => {
-    const checkedBtn = event.target.name;
+  // -------------------------------------------- v1 --------------------------------------------
+  // handleIncrement = event => {
+  //   const checkedBtn = event.target.name;
 
-    if (checkedBtn === 'Good') {
-      this.setState(prevState => ({ good: prevState.good + 1 }));
-    } else if (checkedBtn === 'Neutral') {
-      this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-    } else {
-      this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    }
+  //   if (checkedBtn === 'Good') {
+  //     this.setState(prevState => ({ good: prevState.good + 1 }));
+  //   } else if (checkedBtn === 'Neutral') {
+  //     this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
+  //   } else {
+  //     this.setState(prevState => ({ bad: prevState.bad + 1 }));
+  //   }
+  // };
+
+  // -------------------------------------------- v2 --------------------------------------------
+  handleIncrement = option => {
+    this.setState(prevState => ({ [option]: prevState[option] + 1 }));
   };
+  // --------------------------------------------------------------------------------------------
 
   countTotalFeedback() {
     const totalReviews = this.state.good + this.state.neutral + this.state.bad;
@@ -54,7 +61,10 @@ class ReviewCounter extends React.Component {
     return (
       <div>
         <Section title={'Please leave feedback'}>
-          <FeedbackOptions onBtnClick={this.handleIncrement} />
+          <FeedbackOptions
+            options={this.state}
+            handleIncrement={this.handleIncrement}
+          />
         </Section>
 
         {this.countTotalFeedback() > 0 ? (

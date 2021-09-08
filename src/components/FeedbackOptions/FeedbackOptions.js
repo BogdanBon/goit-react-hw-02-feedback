@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ onBtnClick }) => (
+const FeedbackOptions = ({ handleIncrement, options }) => (
   <div>
-    <button className={s.btn} type="button" name="Good" onClick={onBtnClick}>
-      Good
-    </button>
-    <button className={s.btn} type="button" name="Neutral" onClick={onBtnClick}>
-      Neutral
-    </button>
-    <button className={s.btn} type="button" name="Bad" onClick={onBtnClick}>
-      Bad
-    </button>
+    {Object.keys(options).map(option => (
+      <li key={option}>
+        <button
+          className={s.btn}
+          type="button"
+          onClick={() => handleIncrement(option)}
+        >
+          {option}
+        </button>
+      </li>
+    ))}
   </div>
 );
 
