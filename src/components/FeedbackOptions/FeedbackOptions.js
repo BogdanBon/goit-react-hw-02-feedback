@@ -19,7 +19,14 @@ const FeedbackOptions = ({ handleIncrement, options }) => (
 );
 
 FeedbackOptions.propTypes = {
-  onBtnClick: PropTypes.func,
+  handleIncrement: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.exact({
+      Good: PropTypes.string.isRequired,
+      Neutral: PropTypes.string.isRequired,
+      Bad: PropTypes.number.isRequired,
+    }),
+  ),
 };
 
 export default FeedbackOptions;
